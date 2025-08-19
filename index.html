@@ -526,6 +526,29 @@ auth.onAuthStateChanged(async user => {
   }
 });
 
+
+  auth.onAuthStateChanged(user => {
+  if (user) {
+    const adminEmails = ['admin@example.com']; // Add your admin email(s) here
+    if (adminEmails.includes(user.email)) {
+      // Show admin panel
+      adminSection.style.display = 'block';
+      userSection.style.display = 'none';
+      loginSection.style.display = 'none';
+    } else {
+      // Show user panel only
+      adminSection.style.display = 'none';
+      userSection.style.display = 'block';
+      loginSection.style.display = 'none';
+    }
+  } else {
+    // Not logged in
+    adminSection.style.display = 'none';
+    userSection.style.display = 'none';
+    loginSection.style.display = 'block';
+  }
+});
+
 </script>
 
 </body>
